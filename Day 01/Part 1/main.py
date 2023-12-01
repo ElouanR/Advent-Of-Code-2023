@@ -4,7 +4,7 @@
 def main():
     all_numbers = []
 
-    with open("puzzle_input.txt", "r") as file:
+    with open("Day 01/puzzle_input.txt", "r") as file:
         lines = file.readlines()
 
     for line in lines:
