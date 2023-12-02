@@ -1,5 +1,5 @@
 # Advent of Code 2023 - Day 1 - Part 1
-# https://adventofcode.com/2020/day/1#part1
+# https://adventofcode.com/2023/day/1#part1
 
 def main():
     all_numbers = []

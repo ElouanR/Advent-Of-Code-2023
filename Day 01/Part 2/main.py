@@ -1,5 +1,5 @@
 # Advent of Code 2023 - Day 1 - Part 2
-# https://adventofcode.com/2020/day/1#part2
+# https://adventofcode.com/2023/day/1#part2
 
 def detect_number(line, index):
     numbers_letters = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]
