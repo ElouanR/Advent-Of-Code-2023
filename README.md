@@ -10,7 +10,7 @@ Ce repository contient mes solutions personnelles aux énigmes de l'Advent of Co
 
 ## Structure du Repository
 
-Chaque jour de décembre, vous trouverez un dossier distinct correspondant à la date de l'énigme (par exemple, `Day 01` pour le 1er décembre). À l'intérieur de chaque dossier, vous trouverez le code source de ma solution ainsi que tout autre fichier pertinent.
+Chaque jour de décembre, vous trouverez un dossier distinct correspondant à la date de l'énigme (`Day 01` pour le 1er décembre). À l'intérieur de chaque dossier, vous trouverez le code source de ma solution ainsi que tout autre fichier pertinent.
 
 ## Comment utiliser ce Repository
 
