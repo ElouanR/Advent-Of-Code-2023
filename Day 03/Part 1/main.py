@@ -10,7 +10,7 @@ def get_number(line, index):
 
     return int(number)
 
-def is_part_number(lines, len_nbr, x, y, number):
+def is_part_number(lines, len_nbr, x, y):
     for i in range(x - 1, x + len_nbr + 1):
         if (i >= 0 and i < len(lines[y])):
             if (y != 0 and lines[y - 1][i] != "." and not lines[y - 1][i].isnumeric()):
@@ -35,7 +35,7 @@ def main():
             if (line[x].isnumeric()):
                 number = get_number(line, x)
                 len_nbr = len(str(number))
-                if (is_part_number(lines, len_nbr, x, y, number)):
+                if (is_part_number(lines, len_nbr, x, y)):
                     part_numbers.append(number)
                 x += len_nbr
             else:
