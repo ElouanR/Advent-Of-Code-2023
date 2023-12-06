@@ -46,6 +46,6 @@ Si vous souhaitez exécuter une solution particulière, assurez-vous de remplace
 
 ## Remerciements
 
-Un grand merci à l'équipe d'Advent of Code pour cet événement annuel incroyable ! Vous pouvez en savoir plus sur l'Advent of Code et participer vous-même sur leur [site web officiel](https://adventofcode.com/).
+Un grand merci à Eric Wastl, créateur de d'Advent of Code, pour cet événement annuel incroyable ! Vous pouvez en savoir plus sur l'Advent of Code et participer vous-même sur leur [site web officiel](https://adventofcode.com/).
 
 Joyeux codage et joyeuses fêtes ! 🎁🎅
