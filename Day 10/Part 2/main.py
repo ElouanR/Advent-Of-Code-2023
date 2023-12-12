@@ -74,24 +74,55 @@ def change_char(s, index, char):
     s_list[index] = char
     return ''.join(s_list)
 
-def empty_map():
+def empty_map(lines):
     only_path = []
 
-    for i in range(0, 140):
-        only_path.append("." * 140)
+    for i in range(0, len(lines)):
+        only_path.append("." * len(lines[0]))
+
+    return only_path
+
+def change_start(only_path, fstep, lstep):
+    start = find_start(only_path)
+    all_directions = ["NS", "EW", "NE", "NW", "SW", "SE"]
+    all_pipes = ["|", "-", "L", "J", "7", "F"]
+    directions = ""
+
+    if (fstep[0] - start[0] == -1):
+        directions += 'N'
+    elif (fstep[0] - start[0] == 1):
+        directions += 'S'
+    elif (fstep[1] - start[1] == -1):
+        directions += 'W'
+    elif (fstep[1] - start[1] == 1):
+        directions += 'E'
+
+    if (lstep[0] - start[0] == -1):
+        directions += 'N'
+    elif (lstep[0] - start[0] == 1):
+        directions += 'S'
+    elif (lstep[1] - start[1] == -1):
+        directions += 'W'
+    elif (lstep[1] - start[1] == 1):
+        directions += 'E'
+
+    only_path[start[0]] = change_char(only_path[start[0]], start[1], all_pipes[all_directions.index(directions)])
 
     return only_path
 
 def find_path(lines):
-    only_path = empty_map()
+    only_path = empty_map(lines)
     start = find_start(lines)
     pos = start
     char = lines[pos[0]][pos[1]]
     only_path[pos[0]] = change_char(only_path[pos[0]], pos[1], char)
     lines[pos[0]] = change_char(lines[pos[0]], pos[1], '@')
+    first_step = None
+    last_step = None
     i = 0
 
     while True:
+        last_step = pos
         pos = find_next(lines, pos[0], pos[1], char)
         char = lines[pos[0]][pos[1]]
         only_path[pos[0]] = change_char(only_path[pos[0]], pos[1], char)
@@ -100,18 +131,76 @@ def find_path(lines):
         if (char == 'S'):
             break
         if (i == 1):
+            first_step = pos
+        if (i == 2):
             lines[start[0]] = change_char(lines[start[0]], start[1], 'S')
 
-    for line in only_path:
-        print(line)
+    only_path = change_start(only_path, first_step, last_step)
+
+    return only_path
+
+def change_state(var):
+    if (var == True):
+        return False
+    else:
+        return True
+
+def enclosed_tiles(lines):
+    enclosed = 0
+
+    for line in lines:
+        into = False
+        last_bend = ''
+
+        for char in line:
+            if (char == '.' and into == True):
+                enclosed += 1
+
+            if (char == '|'):
+                into = change_state(into)
+
+            if (char == 'L'):
+                if (last_bend != ''):
+                    if (last_bend == '7'):
+                        into = change_state(into)
+                    last_bend = ''
+                else:
+                    last_bend = 'L'
+
+            if (char == 'J'):
+                if (last_bend != ''):
+                    if (last_bend == 'F'):
+                        into = change_state(into)
+                    last_bend = ''
+                else:
+                    last_bend = 'J'
+
+            if (char == '7'):
+                if (last_bend != ''):
+                    if (last_bend == 'L'):
+                        into = change_state(into)
+                    last_bend = ''
+                else:
+                    last_bend = '7'
+
+            if (char == 'F'):
+                if (last_bend != ''):
+                    if (last_bend == 'J'):
+                        into = change_state(into)
+                    last_bend = ''
+                else:
+                    last_bend = 'F'
+
+    return enclosed
 
 def main():
     with open("Day 10/puzzle_input.txt", "r") as file:
         lines = file.readlines()
 
     lines = [line.strip() for line in lines]
+    lines = find_path(lines)
 
-    find_path(lines)
+    print(enclosed_tiles(lines))
 
 if __name__ == "__main__":
     main()
