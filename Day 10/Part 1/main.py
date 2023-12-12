@@ -88,7 +88,7 @@ def find_path(lines):
         i += 1
         if (char == 'S'):
             break
-        if (i == 1):
+        if (i == 2):
             lines[start[0]] = change_char(lines[start[0]], start[1], 'S')
 
     return i
